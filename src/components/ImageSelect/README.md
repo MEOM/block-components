@@ -30,6 +30,26 @@ The `ImageSelect` component has custom props `buttonText`, `image` and `onChange
 
 ### `buttonText`
 
+Example:
+
+```js
+import { ImageSelect } from '@meom/block-components';
+
+// Inside block `edit` function:
+const {
+    attributes: { image },
+    setAttributes,
+} = props;
+
+<ImageSelect
+    buttonText={'Change Image'}
+    image={image}
+    onChange={(newImage) =>
+        setAttributes({ image: newImage })
+    }
+/>
+```
+
 The button text to remove and replace the image.
 
 - Type: `string`
