@@ -2,6 +2,8 @@ const { __ } = wp.i18n;
 const { Button } = wp.components;
 const { MediaPlaceholder } = wp.blockEditor;
 
+const BUTTON_TEXT = __('Remove Image', 'block-components');
+
 /**
  * Image select control.
  *
@@ -9,7 +11,7 @@ const { MediaPlaceholder } = wp.blockEditor;
  * @return {Node} Component.
  */
 function ImageSelect(props) {
-    const { image, onChange } = props;
+    const { image, onChange, buttonText = BUTTON_TEXT } = props;
     const imageId = image && image.id;
     const imageUrl = image && image.url;
 
@@ -30,7 +32,7 @@ function ImageSelect(props) {
                         className="meom-media-button button button-large"
                         onClick={() => onChange(null)}
                     >
-                        {__('Poista kuva', 'meom-gutenberg')}
+                        {buttonText}
                     </Button>
                 </>
             )}
