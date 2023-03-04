@@ -1,6 +1,6 @@
-const { __ } = wp.i18n;
-const { Button } = wp.components;
-const { MediaPlaceholder } = wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import { Button } from '@wordpress/components';
+import { MediaPlaceholder } from '@wordpress/block-editor';
 
 const BUTTON_TEXT = __('Remove Image', 'block-components');
 

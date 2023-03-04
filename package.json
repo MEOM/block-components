@@ -1,18 +1,16 @@
 {
     "name": "@meom/block-components",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "MEOM block components",
     "homepage": "https://github.com/MEOM/block-components",
     "repository": {
         "type": "git",
         "url": "https://github.com/MEOM/block-components"
     },
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "scripts": {
-        "build": "rollup -c",
-        "compress": "gzip -9 -fkc dist/index.min.js > dist/index.min.js.gz",
-        "show": "ls -lh dist/index.min.js.gz | awk '{print \"Gzipped script size:\", $5\"B\"}'",
-        "size": "npm run build -- --silent && npm run compress --silent && npm run show && rm dist/index.min.js.gz"
+        "build": "wp-scripts build",
+        "start": "wp-scripts start"
     },
     "keywords": [
         "block",
@@ -21,9 +19,6 @@
     "author": "MEOM",
     "license": "MIT",
     "devDependencies": {
-        "@wordpress/eslint-plugin": "^14.0.0",
-        "@wordpress/prettier-config": "^2.10.0",
-        "eslint": "^8.35.0"
+        "@wordpress/scripts": "^25.5.0"
     }
-  }
-  
+}
