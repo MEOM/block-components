@@ -1,6 +1,6 @@
-const { __ } = wp.i18n;
-const { Button } = wp.components;
-const { MediaPlaceholder } = wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import { Button } from '@wordpress/components';
+import { MediaPlaceholder } from '@wordpress/block-editor';
 
 const BUTTON_TEXT = __('Remove Video', 'block-components');
 const VIDEO_ATTRIBUTES = { autoPlay: true, muted: true, loop: true };
@@ -20,6 +20,7 @@ function VideoSelect(props) {
         videoAttributes = VIDEO_ATTRIBUTES,
         videoType = VIDEO_TYPE,
     } = props;
+
     const videoId = video && video.id;
     const videoUrl = video && video.url;
 
