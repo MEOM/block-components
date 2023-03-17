@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 
-const BUTTON_TEXT = __('Remove Video', 'block-components');
+const BUTTON_TEXT = __('Remove Video', 'meom-block-components');
 const VIDEO_ATTRIBUTES = { autoPlay: true, muted: true, loop: true };
 const VIDEO_TYPE = 'video/mp4';
 
