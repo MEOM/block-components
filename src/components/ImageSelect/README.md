@@ -7,26 +7,32 @@ Internally, `ImageSelect` is wrapping a [`MediaPlaceholder`](https://github.com/
 
 For a minimum working setup, you need to pass an image object as `image`, as well as an `onChange` callback that accepts an image object.
 
+If focal point setter is needed, then you need to add `focalPoint` attribute and `onChangeFocalPoint` callback that handles updating focal point value.
+
 ```js
 import { ImageSelect } from '@meom/block-components';
 
 // Inside block `edit` function:
 const {
-    attributes: { image },
+    attributes: { image, focalPoint },
     setAttributes,
 } = props;
 
 <ImageSelect
     image={image}
-    onChange={(newImage) =>
-        setAttributes({ image: newImage })
+    onChange={(newImage) => setAttributes({ image: newImage })}
+    focalPoint={focalPoint}
+    onChangeFocalPoint={(newFocalPoint) =>
+        setAttributes({ focalPoint: newFocalPoint })
     }
-/>
+/>;
 ```
 
 ## Props
 
-The `ImageSelect` component has custom props `buttonText`, `image` and `onChange`  for managing the image.
+The `ImageSelect` component has custom props `buttonText`, `image` and `onChange` for managing the image.
+
+Focal point can be added with custom props `focalPoint` and `onChangeFocalPoint`
 
 ### `buttonText`
 
@@ -44,18 +50,15 @@ const {
 <ImageSelect
     buttonText={'Change Image'}
     image={image}
-    onChange={(newImage) =>
-        setAttributes({ image: newImage })
-    }
-/>
+    onChange={(newImage) => setAttributes({ image: newImage })}
+/>;
 ```
 
 The button text to remove and replace the image.
 
-- Type: `string`
-- Required: No
-- Default: `Remove Image`
-
+-   Type: `string`
+-   Required: No
+-   Default: `Remove Image`
 
 ### `onChange`
 
@@ -75,3 +78,24 @@ Remember to define `image` in `block.json` file as attribute:
     }
 }
 ```
+
+### `focalPoint`
+
+An object that includes `x` and `y` coordinates as percentage. Values should be set between 0 and 1.
+
+```json
+"attributes": {
+    "focalPoint": {
+        "type": "object",
+        "default": {
+           "x": 0.5,
+           "y": 0.5
+        }
+    }
+}
+```
+
+### `onChangeFocalPoint`
+
+The callback to use for handling focal point percentage change.
+Callback should update `focalPoint` attribute values with new `x` and `y` percentages between values 0 and 1.
