@@ -10,7 +10,7 @@ import { useEntityRecords } from '@wordpress/core-data';
  *
  * @param {Object} props Props for component.
  */
-function TermSelect(props) {
+function TermSelect( props ) {
     const {
         attributes: { termId },
         taxonomyName,
@@ -31,36 +31,39 @@ function TermSelect(props) {
         queryOptions
     );
 
-    options.push({
+    options.push( {
         value: 0,
-        label: __('From all categories', 'meom-block-components'),
-    });
+        label: __( 'From all categories', 'meom-block-components' ),
+    } );
 
-    if (!isResolving && records && records.length > 0) {
-        records.forEach((term) => {
-            options.push({
+    if ( ! isResolving && records && records.length > 0 ) {
+        records.forEach( ( term ) => {
+            options.push( {
                 value: term.id,
                 label: term.name,
-            });
-        });
+            } );
+        } );
     }
 
     return (
         <>
-            {isResolving && <Spinner />}
+            { isResolving && <Spinner /> }
 
-            {!isResolving && (
+            { ! isResolving && (
                 <>
                     <SelectControl
-                        label={__('Choose category', 'meom-block-components')}
-                        options={options}
-                        onChange={(newTermId) => {
-                            setAttributes({ termId: newTermId });
-                        }}
-                        value={termId}
+                        label={ __(
+                            'Choose category',
+                            'meom-block-components'
+                        ) }
+                        options={ options }
+                        onChange={ ( newTermId ) => {
+                            setAttributes( { termId: newTermId } );
+                        } }
+                        value={ termId }
                     />
                 </>
-            )}
+            ) }
         </>
     );
 }
