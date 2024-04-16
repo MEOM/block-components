@@ -1,6 +1,6 @@
 {
     "name": "@meom/block-components",
-    "version": "0.2.0",
+    "version": "1.0.2-beta",
     "description": "MEOM block components",
     "homepage": "https://github.com/MEOM/block-components",
     "repository": {
@@ -19,6 +19,6 @@
     "author": "MEOM",
     "license": "MIT",
     "devDependencies": {
-        "@wordpress/scripts": "^25.5.0"
+        "@wordpress/scripts": "^27"
     }
 }

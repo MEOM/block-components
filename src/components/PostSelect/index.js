@@ -10,7 +10,7 @@ import { useEntityRecords } from '@wordpress/core-data';
  *
  * @param {Object} props Props for component.
  */
-function PostSelect(props) {
+function PostSelect( props ) {
     const {
         attributes: { postId },
         postTypeName,
@@ -30,36 +30,36 @@ function PostSelect(props) {
         queryOptions
     );
 
-    options.push({
+    options.push( {
         value: 0,
-        label: __('No post selected', 'meom-block-components'),
-    });
+        label: __( 'No post selected', 'meom-block-components' ),
+    } );
 
-    if (!isResolving && records && records.length > 0) {
-        records.forEach((post) => {
-            options.push({
+    if ( ! isResolving && records && records.length > 0 ) {
+        records.forEach( ( post ) => {
+            options.push( {
                 value: post.id,
                 label: post.title.raw,
-            });
-        });
+            } );
+        } );
     }
 
     return (
         <>
-            {isResolving && <Spinner />}
+            { isResolving && <Spinner /> }
 
-            {!isResolving && (
+            { ! isResolving && (
                 <>
                     <SelectControl
-                        label={__('Choose post', 'meom-block-components')}
-                        options={options}
-                        onChange={(newPostId) => {
-                            setAttributes({ postId: newPostId });
-                        }}
-                        value={postId}
+                        label={ __( 'Choose post', 'meom-block-components' ) }
+                        options={ options }
+                        onChange={ ( newPostId ) => {
+                            setAttributes( { postId: newPostId } );
+                        } }
+                        value={ postId }
                     />
                 </>
-            )}
+            ) }
         </>
     );
 }

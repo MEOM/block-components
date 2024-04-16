@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { MediaPlaceholder } from '@wordpress/block-editor';
 
-const BUTTON_TEXT = __('Remove Video', 'meom-block-components');
+const BUTTON_TEXT = __( 'Remove Video', 'meom-block-components' );
 const VIDEO_ATTRIBUTES = { autoPlay: true, muted: true, loop: true };
 const VIDEO_TYPE = 'video/mp4';
 
@@ -12,7 +12,7 @@ const VIDEO_TYPE = 'video/mp4';
  * @param {Object} props - Component props.
  * @return {Node} Component.
  */
-function VideoSelect(props) {
+function VideoSelect( props ) {
     const {
         video,
         onChange,
@@ -26,27 +26,27 @@ function VideoSelect(props) {
 
     return (
         <>
-            {!videoId ? (
+            { ! videoId ? (
                 <MediaPlaceholder
-                    onSelect={({ id, url }) => {
-                        onChange({ id, url });
-                    }}
-                    allowedTypes={['video']}
+                    onSelect={ ( { id, url } ) => {
+                        onChange( { id, url } );
+                    } }
+                    allowedTypes={ [ 'video' ] }
                 ></MediaPlaceholder>
             ) : (
                 <>
-                    <video {...videoAttributes}>
-                        <source src={videoUrl} type={videoType} />
+                    <video { ...videoAttributes }>
+                        <source src={ videoUrl } type={ videoType } />
                     </video>
 
                     <Button
                         className="meom-media-button button button-large"
-                        onClick={() => onChange(null)}
+                        onClick={ () => onChange( null ) }
                     >
-                        {buttonText}
+                        { buttonText }
                     </Button>
                 </>
-            )}
+            ) }
         </>
     );
 }

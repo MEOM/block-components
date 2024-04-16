@@ -1,8 +1,14 @@
 import { __ } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
-import { MediaPlaceholder } from '@wordpress/block-editor';
+import { Button, FocalPointPicker, PanelBody } from '@wordpress/components';
+import { MediaPlaceholder, InspectorControls } from '@wordpress/block-editor';
 
-const BUTTON_TEXT = __('Remove Image', 'meom-block-components');
+const SETTINGS_TEXT = __( 'Image settings', 'meom-block-components' );
+const FOCALPOINT_LABEL = __( 'Image focalpoint', 'meom-block-components' );
+const FOCALPOINT_HELP = __(
+    'Pick image focalpoint which is central point of the image.',
+    'meom-block-components'
+);
+const BUTTON_TEXT = __( 'Remove Image', 'meom-block-components' );
 
 /**
  * Image select control.
@@ -10,32 +16,70 @@ const BUTTON_TEXT = __('Remove Image', 'meom-block-components');
  * @param {Object} props - Component props.
  * @return {Node} Component.
  */
-function ImageSelect(props) {
-    const { image, onChange, buttonText = BUTTON_TEXT } = props;
+function ImageSelect( props ) {
+    const {
+        image,
+        onChange,
+        settingsText = SETTINGS_TEXT,
+        buttonText = BUTTON_TEXT,
+        useFocalPoint = false,
+        focalPointLabel = FOCALPOINT_LABEL,
+        focalPointHelp = FOCALPOINT_HELP,
+        focalPoint = { x: 0.5, y: 0.5 },
+        onChangeFocalPoint,
+        ...rest
+    } = props;
+
     const imageId = image && image.id;
     const imageUrl = image && image.url;
 
+    if ( useFocalPoint ) {
+        const focalPointStyle = {
+            objectFit: 'cover',
+            objectPosition: `${ focalPoint.x * 100 }% ${ focalPoint.y * 100 }%`,
+        };
+
+        // Set style changes from focalPointStyle object and use it with image.
+        rest.style = {
+            ...rest.style,
+            ...focalPointStyle,
+        };
+    }
+
     return (
         <>
-            {!imageId ? (
+            { ! imageId ? (
                 <MediaPlaceholder
-                    onSelect={({ id, url }) => {
-                        onChange({ id, url });
-                    }}
-                    allowedTypes={['image']}
+                    onSelect={ ( { id, url } ) => {
+                        onChange( { id, url } );
+                    } }
+                    allowedTypes={ [ 'image' ] }
                 ></MediaPlaceholder>
             ) : (
                 <>
-                    <img src={imageUrl} alt="" />
+                    { useFocalPoint && (
+                        <InspectorControls>
+                            <PanelBody title={ settingsText }>
+                                <FocalPointPicker
+                                    label={ focalPointLabel }
+                                    help={ focalPointHelp }
+                                    url={ imageUrl }
+                                    value={ focalPoint }
+                                    onChange={ onChangeFocalPoint }
+                                />
+                            </PanelBody>
+                        </InspectorControls>
+                    ) }
+                    <img src={ imageUrl } alt="" { ...rest } />
 
                     <Button
                         className="meom-media-button button button-large"
-                        onClick={() => onChange(null)}
+                        onClick={ () => onChange( null ) }
                     >
-                        {buttonText}
+                        { buttonText }
                     </Button>
                 </>
-            )}
+            ) }
         </>
     );
 }
