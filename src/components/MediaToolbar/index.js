@@ -3,6 +3,7 @@ import {
     MediaReplaceFlow,
     MediaUpload,
     MediaUploadCheck,
+    BlockControls,
 } from '@wordpress/block-editor';
 import { ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
@@ -27,39 +28,41 @@ const ADD_BUTTON_TEXT = __('Add Image', 'meom-block-components');
  * @returns {React.ReactElement} markup of the ToolbarGroup
  */
 export const MediaToolbar = (props) => {
-    const { onSelect, onRemove, isOptional = false, id } = props;
+    const { onSelect, onRemove, isOptional = true, id } = props;
 
     const hasImage = !!id;
     const { media } = useMedia(id);
 
     return (
-        <ToolbarGroup label={MEDIA_LABEL}>
-            {hasImage ? (
-                <>
-                    <MediaReplaceFlow
-                        mediaUrl={media?.source_url}
-                        onSelect={onSelect}
-                        name={REPLACE_BUTTON_TEXT}
-                    />
-                    {!!isOptional && (
-                        <ToolbarButton onClick={onRemove}>
-                            {REMOVE_BUTTON_TEXT}
-                        </ToolbarButton>
-                    )}
-                </>
-            ) : (
-                <MediaUploadCheck>
-                    <MediaUpload
-                        onSelect={onSelect}
-                        render={({ open }) => (
-                            <ToolbarButton onClick={open}>
-                                {ADD_BUTTON_TEXT}
+        <BlockControls>
+            <ToolbarGroup label={MEDIA_LABEL}>
+                {hasImage ? (
+                    <>
+                        <MediaReplaceFlow
+                            mediaUrl={media?.source_url}
+                            onSelect={onSelect}
+                            name={REPLACE_BUTTON_TEXT}
+                        />
+                        {!!isOptional && (
+                            <ToolbarButton onClick={onRemove}>
+                                {REMOVE_BUTTON_TEXT}
                             </ToolbarButton>
                         )}
-                    />
-                </MediaUploadCheck>
-            )}
-        </ToolbarGroup>
+                    </>
+                ) : (
+                    <MediaUploadCheck>
+                        <MediaUpload
+                            onSelect={onSelect}
+                            render={({ open }) => (
+                                <ToolbarButton onClick={open}>
+                                    {ADD_BUTTON_TEXT}
+                                </ToolbarButton>
+                            )}
+                        />
+                    </MediaUploadCheck>
+                )}
+            </ToolbarGroup>
+        </BlockControls>
     );
 };
 

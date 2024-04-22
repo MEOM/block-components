@@ -7,9 +7,10 @@ Internally, `ImageSelect` is wrapping a [`MediaPlaceholder`](https://github.com/
 
 For a minimum working setup, you need to pass an image object as `image`, as well as an `onChange` callback that accepts an image object.
 
-If focal point setter is needed, then you need to 
-- set `useFocalPoint` to `true`.
-- add `focalPoint` attribute and `onChangeFocalPoint` callback that handles updating focal point value.
+If focal point setter is needed, then you need to
+
+-   set `useFocalPoint` to `true`.
+-   add `focalPoint` attribute and `onChangeFocalPoint` callback that handles updating focal point value.
 
 ```js
 import { ImageSelect } from '@meom/block-components';
@@ -23,7 +24,7 @@ const {
 <ImageSelect
     image={image}
     onChange={(newImage) => setAttributes({ image: newImage })}
-    useFocalPoint={ true }
+    useFocalPoint={true}
     focalPoint={focalPoint}
     onChangeFocalPoint={(newFocalPoint) =>
         setAttributes({ focalPoint: newFocalPoint })
@@ -58,6 +59,32 @@ The button text to remove and replace the image.
 -   Type: `string`
 -   Required: No
 -   Default: `Remove Image`
+
+### `showRemoveImageButton`
+
+Example:
+
+```js
+import { ImageSelect } from '@meom/block-components';
+
+// Inside block `edit` function:
+const {
+    attributes: { image },
+    setAttributes,
+} = props;
+
+<ImageSelect
+    showRemoveImageButton={false}
+    image={image}
+    onChange={(newImage) => setAttributes({ image: newImage })}
+/>;
+```
+
+Property to decide if remove image button want's to be shown.
+
+-   Type: `boolean`
+-   Required: No
+-   Default: `true`
 
 ### `settingsText`
 
