@@ -25,6 +25,7 @@ function ImageSelect(props) {
         showRemoveImageButton = true,
         buttonText = BUTTON_TEXT,
         useFocalPoint = false,
+        useMediaToolbar = true,
         focalPointLabel = FOCALPOINT_LABEL,
         focalPointHelp = FOCALPOINT_HELP,
         focalPoint = { x: 0.5, y: 0.5 },
@@ -72,15 +73,19 @@ function ImageSelect(props) {
                             </PanelBody>
                         </InspectorControls>
                     )}
-                    <MediaToolbar
-                        id={imageId}
-                        onSelect={({ id, url }) => {
-                            onChange({ id, url });
-                        }}
-                        onRemove={() => {
-                            onChange(null);
-                        }}
-                    />
+
+                    {useMediaToolbar && (
+                        <MediaToolbar
+                            id={imageId}
+                            onSelect={({ id, url }) => {
+                                onChange({ id, url });
+                            }}
+                            onRemove={() => {
+                                onChange(null);
+                            }}
+                        />
+                    )}
+
                     <img src={imageUrl} alt="" {...rest} />
 
                     {showRemoveImageButton && (

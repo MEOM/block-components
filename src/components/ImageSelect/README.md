@@ -113,6 +113,24 @@ Remember to define `image` in `block.json` file as attribute:
 }
 ```
 
+### `useMediaToolbar`
+
+Boolean which determines do we use `MediaToolbar` in this image.
+
+-   Type: `boolean`
+-   Required: No
+-   Default: `true`
+
+
+```js
+// Hide `MediaToolbar`.
+<ImageSelect
+    useMediaToolbar={false}
+    image={image}
+    onChange={(newImage) => setAttributes({ image: newImage })}
+/>;
+```
+
 ### `useFocalPoint`
 
 Boolean which determines do we use focalpoint in this image.
