@@ -1,5 +1,5 @@
-const path = require('path');
-const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const path = require( 'path' );
+const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
 module.exports = {
     ...defaultConfig,
@@ -10,6 +10,6 @@ module.exports = {
             name: '@meom/block-components',
             type: 'umd',
         },
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve( __dirname, 'dist' ),
     },
 };
