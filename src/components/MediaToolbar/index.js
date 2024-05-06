@@ -24,8 +24,8 @@ const ADD_BUTTON_TEXT = __('Add Image', 'meom-block-components');
  *
  * Component got from https://github.com/10up/block-components/tree/develop/components/media-toolbar
  *
- * @param {object} props options
- * @returns {React.ReactElement} markup of the ToolbarGroup
+ * @param {Object} props options
+ * @return {React.ReactElement} markup of the ToolbarGroup
  */
 export const MediaToolbar = (props) => {
     const { onSelect, onRemove, isOptional = true, id } = props;
