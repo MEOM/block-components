@@ -34,3 +34,30 @@ Remember to define `termId` in `block.json` file as attribute:
     }
 }
 ```
+
+### `useMultiple`
+
+Boolean which determines do we want to select multiple terms.
+
+Usage:
+
+```js
+<TermSelect
+    useMultiple={ true }
+    taxonomyName="category" {...props}
+/>
+```
+
+When using `multiple` remember to define `termId` in `block.json` file as an array:
+
+```json
+"attributes": {
+    "termId": {
+        "type": "array"
+    }
+}
+```
+
+-   Type: `boolean`
+-   Required: No
+-   Default: `false`

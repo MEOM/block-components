@@ -17,6 +17,7 @@ function TermSelect( props ) {
         queryArgs = { per_page: 99 },
         queryOptions = { enabled: true },
         setAttributes,
+        useMultiple = false,
     } = props;
 
     const options = [];
@@ -61,6 +62,7 @@ function TermSelect( props ) {
                             setAttributes( { termId: newTermId } );
                         } }
                         value={ termId }
+                        { ...( useMultiple ? { multiple: true } : {} ) }
                     />
                 </>
             ) }
