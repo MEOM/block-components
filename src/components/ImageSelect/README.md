@@ -178,14 +178,33 @@ The focalpoint label helper text.
 
 ## How to use focalpoint in PHP
 
-Note that `attr` is custom function for getting the attribute. Here is an example how to use focalpoint in PHP
+Note that `attr` is custom function for getting the attribute. Here is an example how to use focalpoint in PHP. You may want to add the function to helpers.php.
 
 ```php
-$focal_point    = attr( 'focalPoint', $attributes, [ 'x' => 0.5, 'y' => 0.5 ] );
-$focal_point_x  = $focal_point && isset( $focal_point['x'] ) ? $focal_point['x'] * 100 : false;
-$focal_point_y  = $focal_point && isset( $focal_point['y'] ) ? $focal_point['y'] * 100 : false;
+$focal_point       = attr( 'focalPoint', $attributes, [ 'x' => 0.5, 'y' => 0.5 ] );
+$focal_point_style = get_focal_point_style( $focal_point );
 
-$focal_point_styles = $focal_point_x && $focal_point_y ? "object-position: {$focal_point_x}% {$focal_point_y}%" : '';
+wp_get_attachment_image( $image_id, 'full', '', [ 'loading' => 'eager', 'style' => esc_attr( $focal_point_style ) ] );
 
-wp_get_attachment_image( $image_id, 'full', '', [ 'loading' => 'eager', 'style' => esc_attr( $focal_point_styles ) ] );
+/**
+ * Get css object-position attribute by focal point
+ *
+ * @param $focal_point array
+ *
+ * @return string
+ */
+function get_focal_point_style( $focal_point ) {
+    if ( ! $focal_point || ! is_array( $focal_point ) ) {
+        return '';
+    }
+
+    $focal_point_x = array_key_exists( 'x', $focal_point ) ? $focal_point['x'] * 100 : false;
+    $focal_point_y = array_key_exists( 'y', $focal_point ) ? $focal_point['y'] * 100 : false;
+
+    if ( $focal_point_x !== false && $focal_point_y !== false ) {
+        return "object-position: {$focal_point_x}% {$focal_point_y}%";
+    }
+
+    return '';
+}
 ```
