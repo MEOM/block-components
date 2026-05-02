@@ -5,6 +5,8 @@ import { __ } from '@wordpress/i18n';
 import { FormTokenField, Spinner } from '@wordpress/components';
 import { useEntityRecords } from '@wordpress/core-data';
 
+const SETTINGS_LABEL = __( 'Choose categories', 'meom-block-components' );
+
 /**
  * Multi-select term picker for a taxonomy using FormTokenField.
  *
@@ -31,6 +33,7 @@ function TermsSelect( props ) {
         },
         queryOptions = { enabled: true },
         setAttributes,
+        settingsLabel = SETTINGS_LABEL,
     } = props;
 
     // See: https://make.wordpress.org/core/2022/10/11/simplified-data-access-with-new-react-hooks-in-wordpress-6-1/
@@ -60,7 +63,7 @@ function TermsSelect( props ) {
 
     return (
         <FormTokenField
-            label={ __( 'Choose categories', 'meom-block-components' ) }
+            label={ settingsLabel }
             value={ selectedNames }
             suggestions={ allNames }
             onChange={ ( newNames ) => {
@@ -73,7 +76,7 @@ function TermsSelect( props ) {
             __experimentalShowHowTo={ false }
             help={ __(
                 'You can select one or more terms. Selecting multiple terms will expand the lifts (OR logic).',
-                'block-components'
+                'meom-block-components'
             ) }
         />
     );

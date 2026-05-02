@@ -35,3 +35,11 @@ Remember to define `termIds` in `block.json` file as attribute:
     },
 }
 ```
+
+### `settingsLabel`
+
+Component label.
+
+-   Type: `string`
+-   Required: No
+-   Default: `Choose categories`
