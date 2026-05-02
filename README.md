@@ -28,6 +28,7 @@ One way to ensure all dependencies are loaded is to use the [`@wordpress/depende
 - [`ImageSelect`](src/components/ImageSelect)
 - [`PostSelect`](src/components/PostSelect)
 - [`TermSelect`](src/components/TermSelect)
+- [`TermsSelect`](src/components/TermsSelect)
 - [`VideoSelect`](src/components/VideoSelect)
 
 ## Contributing
