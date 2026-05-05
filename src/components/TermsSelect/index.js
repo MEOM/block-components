@@ -5,6 +5,7 @@ import { __ } from '@wordpress/i18n';
 import { FormTokenField, Spinner } from '@wordpress/components';
 import { useEntityRecords } from '@wordpress/core-data';
 
+const PER_PAGE = 99;
 const SETTINGS_LABEL = __( 'Choose categories', 'meom-block-components' );
 
 /**
@@ -25,8 +26,9 @@ function TermsSelect( props ) {
     const {
         attributes: { termIds = [] },
         taxonomyName,
+        perPage = PER_PAGE,
         queryArgs = {
-            per_page: 99,
+            per_page: perPage,
             orderby: 'name',
             order: 'asc',
             _fields: 'id,name',
